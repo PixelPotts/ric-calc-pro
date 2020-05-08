@@ -31,8 +31,12 @@ class Projects : ObservableObject {
                 print("snapshot is empty!")
                 return
             }
+            self.projects = []
+            print("projects",self.projects)
             for document in snapshot!.documents {
-                self.projectsTmp.append(document.data())
+                var data = document.data() as Dictionary<String,Any>
+                data["docID"] = document.documentID
+                self.projectsTmp.append(data)
             }
             self.projects = self.projectsTmp
         }
@@ -51,6 +55,7 @@ struct AllProjects: View {
     @State var newProjectName: String?
     let db = FirebaseFirestore.Firestore.firestore()
     
+    init(){ self.projects.updateProjects() }
     
     func seedProjects() {
         let ref = self.db.collection("projects")
@@ -174,9 +179,6 @@ struct AllProjects: View {
             .navigationBarTitle(Text("All Projects"),displayMode: .inline)
             .sheet(isPresented: self.$showAddProjectSheet) {
                 AddProjectView(newProjectName: self.$newProjectName)
-            }
-            .onAppear(){
-                self.projects.updateProjects()
             }
         }
     }

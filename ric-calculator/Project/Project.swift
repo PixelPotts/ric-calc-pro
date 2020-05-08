@@ -24,20 +24,28 @@ var rooms: [Dictionary<String,Any>] = [
 struct ProjectView: View {
     var rooms: Array<Any>
     var project: Dictionary<String,Any>
+    
+    func getRoomName(_ room:Dictionary<String,Any>) -> String{
+        return room["name"] as? String ?? ""
+    }
+    
     var body: some View {
             VStack {
                 ForEach(self.rooms.indices, id: \.self) { i in
-                    NavigationLink(destination: RoomView(String(i))){
-                        ListItem(
-                            id: String(i),
-                            title: String(i),
-                            cost: 100
-                        )
-                    }
+                    NavigationLink(destination:
+                    RoomView(
+                        room: self.rooms[i] as! Dictionary<String,Any>,
+                        project: self.project)){
+                            ListItem(
+                                id: String(i),
+                                title: self.getRoomName(self.rooms[i] as! Dictionary<String, Any>),
+                                cost: 100
+                            )
+                        }
                 }
                 Spacer()
                 .padding(.top,14)
-                .navigationBarTitle(Text(project["title"] as! String),displayMode: .inline)
+                .navigationBarTitle(Text(project["name"] as! String),displayMode: .inline)
         }
     }
 }

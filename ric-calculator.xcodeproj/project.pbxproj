@@ -11,6 +11,7 @@
 		C74626A82465733300C0A108 /* TermSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74626A72465733300C0A108 /* TermSheet.swift */; };
 		C74626AB2465743900C0A108 /* AllProjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74626AA2465743900C0A108 /* AllProjects.swift */; };
 		C74626B12465A42E00C0A108 /* Projects.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74626B02465A42E00C0A108 /* Projects.swift */; };
+		C74626B324661E9400C0A108 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74626B224661E9400C0A108 /* Calculator.swift */; };
 		C7CB56492461D26B00342BB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB56482461D26B00342BB0 /* AppDelegate.swift */; };
 		C7CB564B2461D26B00342BB0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB564A2461D26B00342BB0 /* SceneDelegate.swift */; };
 		C7CB564D2461D26B00342BB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB564C2461D26B00342BB0 /* ContentView.swift */; };
@@ -32,6 +33,7 @@
 		C74626AE2465A40800C0A108 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C74626AF2465A41800C0A108 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C74626B02465A42E00C0A108 /* Projects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Projects.swift; sourceTree = "<group>"; };
+		C74626B224661E9400C0A108 /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
 		C7CB56452461D26B00342BB0 /* ric-calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ric-calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7CB56482461D26B00342BB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7CB564A2461D26B00342BB0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				C74626B02465A42E00C0A108 /* Projects.swift */,
+				C74626B224661E9400C0A108 /* Calculator.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				C7CB56492461D26B00342BB0 /* AppDelegate.swift in Sources */,
 				C7CB564B2461D26B00342BB0 /* SceneDelegate.swift in Sources */,
 				C7CB564D2461D26B00342BB0 /* ContentView.swift in Sources */,
+				C74626B324661E9400C0A108 /* Calculator.swift in Sources */,
 				C74626A82465733300C0A108 /* TermSheet.swift in Sources */,
 				C7CB566224629F8400342BB0 /* RoomView.swift in Sources */,
 				C74626B12465A42E00C0A108 /* Projects.swift in Sources */,

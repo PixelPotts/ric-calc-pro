@@ -22,15 +22,16 @@ var rooms: [Dictionary<String,Any>] = [
 ]
 
 struct ProjectView: View {
+    var rooms: Array<Any>
     var project: Dictionary<String,Any>
     var body: some View {
             VStack {
-                ForEach(0..<rooms.count) { room in
-                    NavigationLink(destination: RoomView(id: rooms[room]["id"] as! String)){
+                ForEach(self.rooms.indices, id: \.self) { i in
+                    NavigationLink(destination: RoomView(String(i))){
                         ListItem(
-                            id: rooms[room]["id"] as! String,
-                            title: rooms[room]["title"] as! String,
-                            cost: rooms[room]["cost"] as! Int
+                            id: String(i),
+                            title: String(i),
+                            cost: 100
                         )
                     }
                 }

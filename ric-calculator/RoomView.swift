@@ -25,13 +25,17 @@ public struct Room: Codable {
 }
 
 struct RoomView: View {
-    var id: String
     @State private var title: String = ""
     @State private var installSqFt: String = "" // Q: how to handle this type properly across app
     @State private var yearHomeBuilt: Int = 0
     @State private var hasInstall = true
     @State private var hasMaterial = true
     @State private var hasTearout = true
+    
+    init(_ name: String){
+        self.title = name
+    }
+    
     var body: some View {
         VStack {
             
@@ -117,13 +121,5 @@ struct RoomView: View {
         }
         .padding(20)
         .navigationBarTitle(Text("test"), displayMode: .inline)
-    }
-}
-
-
-struct RoomView_Previews: PreviewProvider {
-    @State private var title: String = ""
-    static var previews: some View {
-        RoomView(id:"1")
     }
 }

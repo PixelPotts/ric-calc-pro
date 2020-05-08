@@ -7,6 +7,30 @@
 //
 
 import SwiftUI
+import Firebase
+
+public struct FloatingLabelInput: View {
+    var placeholder: String
+    @Binding var value: String
+    public var body: some View {
+        ZStack {
+            HStack {
+                Text(placeholder)
+                    .padding(.bottom,10)
+                    .font(self.value.isEmpty ? .body : .caption)
+                    .foregroundColor(self.value.isEmpty ? Color.gray : Color.gray.opacity(0.8))
+                    .offset(x: 0,y: self.value.isEmpty ? 0 : -19)
+                    .transition(.slide)
+                    .transition(.scale)
+//                    .multilineTextAlignment(.center)
+                Spacer()
+            }
+            .animation(.easeIn(duration: 0.1))
+            TextField("",text: self.$value)
+                .padding(.bottom,10)
+        }
+    }
+}
 
 struct ListItem: View {
     var id: String
@@ -69,4 +93,22 @@ struct Helpers_Previews: PreviewProvider {
 
         }).buttonStyle(NeumorphicButtonStyle(bgColor: Color.blue))
     }
+}
+
+func validatePhoneNumber(value:Binding<String>) -> Bool {
+    do {
+        if try NSRegularExpression(
+            pattern: "^(\\d{10}|\\d{3}-\\d{3}-\\d{4})$",
+            options: .caseInsensitive)
+            .firstMatch(
+                in: String(value.wrappedValue),
+                options: [],
+                range: NSRange(location: 0, length: String(value.wrappedValue).count)
+            ) == nil {
+            return false
+        }
+    } catch {
+        return false
+    }
+    return true
 }

@@ -3,10 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25A79F7CCD3EFC610516C52C /* Pods_ric_calculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E59A881249C4E1B07A5D3A6F /* Pods_ric_calculator.framework */; };
+		C74626A82465733300C0A108 /* TermSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74626A72465733300C0A108 /* TermSheet.swift */; };
+		C74626AB2465743900C0A108 /* AllProjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74626AA2465743900C0A108 /* AllProjects.swift */; };
+		C74626B12465A42E00C0A108 /* Projects.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74626B02465A42E00C0A108 /* Projects.swift */; };
 		C7CB56492461D26B00342BB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB56482461D26B00342BB0 /* AppDelegate.swift */; };
 		C7CB564B2461D26B00342BB0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB564A2461D26B00342BB0 /* SceneDelegate.swift */; };
 		C7CB564D2461D26B00342BB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB564C2461D26B00342BB0 /* ContentView.swift */; };
@@ -16,9 +20,18 @@
 		C7CB565E24628A6500342BB0 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB565D24628A6500342BB0 /* Project.swift */; };
 		C7CB566024628B4900342BB0 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB565F24628B4900342BB0 /* Helpers.swift */; };
 		C7CB566224629F8400342BB0 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB566124629F8400342BB0 /* RoomView.swift */; };
+		C7CB56642463E4EC00342BB0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7CB56632463E4EC00342BB0 /* GoogleService-Info.plist */; };
+		C7EBF6202464A1FD0079E56F /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EBF61F2464A1FD0079E56F /* Actions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		93A9BEB46974B27B61898D41 /* Pods-ric-calculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ric-calculator.release.xcconfig"; path = "Target Support Files/Pods-ric-calculator/Pods-ric-calculator.release.xcconfig"; sourceTree = "<group>"; };
+		C524C0836F71807DC382D32A /* Pods-ric-calculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ric-calculator.debug.xcconfig"; path = "Target Support Files/Pods-ric-calculator/Pods-ric-calculator.debug.xcconfig"; sourceTree = "<group>"; };
+		C74626A72465733300C0A108 /* TermSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermSheet.swift; sourceTree = "<group>"; };
+		C74626AA2465743900C0A108 /* AllProjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProjects.swift; sourceTree = "<group>"; };
+		C74626AE2465A40800C0A108 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C74626AF2465A41800C0A108 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C74626B02465A42E00C0A108 /* Projects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Projects.swift; sourceTree = "<group>"; };
 		C7CB56452461D26B00342BB0 /* ric-calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ric-calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7CB56482461D26B00342BB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7CB564A2461D26B00342BB0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -30,6 +43,10 @@
 		C7CB565D24628A6500342BB0 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		C7CB565F24628B4900342BB0 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		C7CB566124629F8400342BB0 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
+		C7CB56632463E4EC00342BB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C7CB56652463FDC300342BB0 /* ric-calculator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ric-calculator.entitlements"; sourceTree = "<group>"; };
+		C7EBF61F2464A1FD0079E56F /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		E59A881249C4E1B07A5D3A6F /* Pods_ric_calculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ric_calculator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,17 +54,67 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25A79F7CCD3EFC610516C52C /* Pods_ric_calculator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B3A46EC549A2394510742B72 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E59A881249C4E1B07A5D3A6F /* Pods_ric_calculator.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C74626A62465732100C0A108 /* TermSheet */ = {
+			isa = PBXGroup;
+			children = (
+				C74626A72465733300C0A108 /* TermSheet.swift */,
+			);
+			name = TermSheet;
+			sourceTree = "<group>";
+		};
+		C74626A92465741600C0A108 /* All Projects */ = {
+			isa = PBXGroup;
+			children = (
+				C74626AA2465743900C0A108 /* AllProjects.swift */,
+			);
+			name = "All Projects";
+			sourceTree = "<group>";
+		};
+		C74626AC2465A3E900C0A108 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				C74626B02465A42E00C0A108 /* Projects.swift */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
+		C74626AD2465A3FF00C0A108 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				C74626AF2465A41800C0A108 /* GoogleService-Info.plist */,
+				C7CB564E2461D26D00342BB0 /* Assets.xcassets */,
+				C7CB56482461D26B00342BB0 /* AppDelegate.swift */,
+				C7CB564A2461D26B00342BB0 /* SceneDelegate.swift */,
+				C7CB56532461D26D00342BB0 /* LaunchScreen.storyboard */,
+				C7CB56562461D26D00342BB0 /* Info.plist */,
+				C74626AE2465A40800C0A108 /* GoogleService-Info.plist */,
+				C7CB56652463FDC300342BB0 /* ric-calculator.entitlements */,
+			);
+			name = core;
+			sourceTree = "<group>";
+		};
 		C7CB563C2461D26B00342BB0 = {
 			isa = PBXGroup;
 			children = (
 				C7CB56472461D26B00342BB0 /* ric-calculator */,
 				C7CB56462461D26B00342BB0 /* Products */,
+				CE882CCF124FB1E62B36ED29 /* Pods */,
+				B3A46EC549A2394510742B72 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,14 +129,11 @@
 		C7CB56472461D26B00342BB0 /* ric-calculator */ = {
 			isa = PBXGroup;
 			children = (
-				C7D7E62E2463551000C31D47 /* Room */,
+				C74626AC2465A3E900C0A108 /* models */,
 				C7CB565C24628A4A00342BB0 /* views */,
+				C74626AD2465A3FF00C0A108 /* core */,
 				C7CB565F24628B4900342BB0 /* Helpers.swift */,
-				C7CB564E2461D26D00342BB0 /* Assets.xcassets */,
-				C7CB56482461D26B00342BB0 /* AppDelegate.swift */,
-				C7CB564A2461D26B00342BB0 /* SceneDelegate.swift */,
-				C7CB56532461D26D00342BB0 /* LaunchScreen.storyboard */,
-				C7CB56562461D26D00342BB0 /* Info.plist */,
+				C7CB56632463E4EC00342BB0 /* GoogleService-Info.plist */,
 				C7CB56502461D26D00342BB0 /* Preview Content */,
 			);
 			path = "ric-calculator";
@@ -86,8 +150,11 @@
 		C7CB565C24628A4A00342BB0 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				C7CB564C2461D26B00342BB0 /* ContentView.swift */,
-				C7CB565D24628A6500342BB0 /* Project.swift */,
+				C74626A92465741600C0A108 /* All Projects */,
+				C74626A62465732100C0A108 /* TermSheet */,
+				C7EBF61D2464A1DA0079E56F /* Register */,
+				C7EBF61E2464A1E60079E56F /* Project */,
+				C7D7E62E2463551000C31D47 /* Room */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -100,6 +167,32 @@
 			name = Room;
 			sourceTree = "<group>";
 		};
+		C7EBF61D2464A1DA0079E56F /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				C7CB564C2461D26B00342BB0 /* ContentView.swift */,
+				C7EBF61F2464A1FD0079E56F /* Actions.swift */,
+			);
+			name = Register;
+			sourceTree = "<group>";
+		};
+		C7EBF61E2464A1E60079E56F /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				C7CB565D24628A6500342BB0 /* Project.swift */,
+			);
+			path = Project;
+			sourceTree = "<group>";
+		};
+		CE882CCF124FB1E62B36ED29 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C524C0836F71807DC382D32A /* Pods-ric-calculator.debug.xcconfig */,
+				93A9BEB46974B27B61898D41 /* Pods-ric-calculator.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -107,9 +200,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C7CB56592461D26D00342BB0 /* Build configuration list for PBXNativeTarget "ric-calculator" */;
 			buildPhases = (
+				34C114FB12583552CB4603BB /* [CP] Check Pods Manifest.lock */,
 				C7CB56412461D26B00342BB0 /* Sources */,
 				C7CB56422461D26B00342BB0 /* Frameworks */,
 				C7CB56432461D26B00342BB0 /* Resources */,
+				B9436B842330DCB62B1C8DCF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -159,12 +254,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7CB56552461D26D00342BB0 /* LaunchScreen.storyboard in Resources */,
+				C7CB56642463E4EC00342BB0 /* GoogleService-Info.plist in Resources */,
 				C7CB56522461D26D00342BB0 /* Preview Assets.xcassets in Resources */,
 				C7CB564F2461D26D00342BB0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		34C114FB12583552CB4603BB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ric-calculator-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B9436B842330DCB62B1C8DCF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ric-calculator/Pods-ric-calculator-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ric-calculator/Pods-ric-calculator-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ric-calculator/Pods-ric-calculator-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C7CB56412461D26B00342BB0 /* Sources */ = {
@@ -174,9 +312,13 @@
 				C7CB56492461D26B00342BB0 /* AppDelegate.swift in Sources */,
 				C7CB564B2461D26B00342BB0 /* SceneDelegate.swift in Sources */,
 				C7CB564D2461D26B00342BB0 /* ContentView.swift in Sources */,
+				C74626A82465733300C0A108 /* TermSheet.swift in Sources */,
 				C7CB566224629F8400342BB0 /* RoomView.swift in Sources */,
+				C74626B12465A42E00C0A108 /* Projects.swift in Sources */,
 				C7CB566024628B4900342BB0 /* Helpers.swift in Sources */,
 				C7CB565E24628A6500342BB0 /* Project.swift in Sources */,
+				C74626AB2465743900C0A108 /* AllProjects.swift in Sources */,
+				C7EBF6202464A1FD0079E56F /* Actions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,8 +452,10 @@
 		};
 		C7CB565A2461D26D00342BB0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C524C0836F71807DC382D32A /* Pods-ric-calculator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ric-calculator/ric-calculator.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ric-calculator/Preview Content\"";
 				DEVELOPMENT_TEAM = NH5J65QW37;
@@ -330,8 +474,10 @@
 		};
 		C7CB565B2461D26D00342BB0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93A9BEB46974B27B61898D41 /* Pods-ric-calculator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ric-calculator/ric-calculator.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ric-calculator/Preview Content\"";
 				DEVELOPMENT_TEAM = NH5J65QW37;

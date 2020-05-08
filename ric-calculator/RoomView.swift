@@ -8,9 +8,8 @@
 
 import SwiftUI
 
+
 // Singleton shared DAO object
-
-
 
 // Try passing in entire collection
 // Check out nested codables

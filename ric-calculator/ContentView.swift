@@ -1,56 +1,116 @@
-//
-//  ContentView.swift
-//  ric-calculator
-//
-//  Created by Bryan Potts on 5/5/20.
-//  Copyright © 2020 Bryan Potts. All rights reserved.
-//
-
 import SwiftUI
-
-var projects: [Dictionary<String,Any>] = [
-    [
-        "id": "A00001",
-        "title": "Smith Living, Dining Room",
-        "cost": 530
-    ],
-    [
-        "id": "A00002",
-        "title": "Johnson Bathrooms",
-        "cost": 1200
-    ],
-    [
-        "id": "A00003",
-        "title": "Potts Kitchen and Bath",
-        "cost": 940
-    ]
-]
+import FirebaseFirestore
+import FirebaseAuth
+import Combine
 
 struct ContentView: View {
-    @State var scene = "projects"
+    @State var session: Any?
+    @State var showTermSheet = false
+    @State var phoneNumber: String = ""
+    @State var displayName: String = ""
+    @State var emailAddress: String = ""
+    
+    init(){
+        print("ContentView().init() fired!")
+//        self.getUser()
+    }
+    
+    func getUser () {
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            print("Auth.auth().addStateDidChangeListener() fired!", auth, user)
+            if let user = user {
+                self.session = User(
+                    uid: user.uid,
+                    displayName: user.displayName,
+                    email: user.email
+                )
+            } else {
+                self.session = nil
+            }
+        }
+    }
     
     var body: some View {
-        
-        NavigationView {
+        GeometryReader { geo in
             VStack {
                 
-                ForEach(0..<projects.count) { project in
-                    NavigationLink(destination: ProjectView(project: projects[project])){
-                        ListItem(
-                            id: projects[project]["id"] as! String,
-                            title: projects[project]["title"] as! String,
-                            cost: projects[project]["cost"] as! Int
-                        )
+                // MARK: - SIGN IN or REGISTER
+                if(self.session == nil){
+                    
+                    Group {
+                        Image("logo")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: geo.size.width / 2)
+
+                        Text("AccuQuote Calculator").padding(.top,10)
+
+                        // Full Name
+                        FloatingLabelInput(placeholder: "First and Last Name", value: self.$displayName)
+                            .keyboardType(.alphabet)
+                            .autocapitalization(.words)
+                            .onReceive(Just(self.displayName)) { newValue in
+                                let filtered = newValue.filter {" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRST".contains($0)}
+                                if filtered != newValue { self.displayName = filtered }
+                                self.displayName = self.displayName.replacingOccurrences(of: "  ", with: " ")
+                        }
+                        .padding(.top, 10)
+
+                        // Email
+                        FloatingLabelInput(placeholder: "Email Address", value: self.$emailAddress).autocapitalization(.none)
+
+                        // Phone Number
+                        FloatingLabelInput(placeholder: "Phone Number", value: self.$phoneNumber)
+                            .keyboardType(.numberPad)
+                            .onReceive(Just(self.phoneNumber)) { newValue in
+                                let filtered = newValue.filter {" -+0123456789".contains($0)}
+                                if filtered != newValue {
+                                    self.phoneNumber = filtered
+                                }
+                                self.phoneNumber = self.phoneNumber.replacingOccurrences(of: "  ", with: " ")
+                        }
+
+                        Button(action: {
+                            if(validatePhoneNumber(value: self.$phoneNumber)) {
+                                SessionStore().signUp(
+                                    email: self.$emailAddress.wrappedValue,
+                                    phoneNumber: self.$phoneNumber.wrappedValue,
+                                    displayName: self.$displayName.wrappedValue) { (AuthDataResult, Error) in
+                                        print(Error!)
+                                }
+                            }
+                        }) {
+                            Text("Register / Sign In")
+                        }
+
+                        Spacer()
+
+                        Button(action: {
+                            self.showTermSheet.toggle()
+                        }) {
+                            Text("Terms of Use")
+                        }.sheet(isPresented: self.$showTermSheet) {
+                            TermsSheet()
+                        }
                     }
+                    .edgesIgnoringSafeArea(.all)
+                    .frame(minWidth:100, maxWidth: .infinity)
+                    .padding(.all,20)
+                    
+                    // MARK: - CALCULATOR HOMEPAGE (All Projects)
+                } else {
+                    AllProjects()
                 }
-                
-                Spacer()
             }
-            .padding(.top,14)
-            .navigationBarTitle(Text("All Projects"),displayMode: .inline)
+            .onAppear(){
+                self.getUser()
+                print("ContentView().onAppear() fired!")
+            }
         }
     }
 }
+
+
 
 
 struct ContentView_Previews: PreviewProvider {

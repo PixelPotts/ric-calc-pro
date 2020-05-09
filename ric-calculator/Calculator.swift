@@ -40,4 +40,43 @@ class Calculator {
         self.tearoutMaterial = tearoutMaterial
         self.total = Int32(0)
     }
+    
+    func getInstallMaterialTypePrice() -> Double {
+        switch self.installMaterial {
+            case "NAILED":      return 2.95
+            case "GLUED":       return 4.00
+            case "FLOATING":    return 1.95
+            case "TILED":       return 8.00
+            case "CARPETED":    return 1.20
+            default:            return 3.62 // average of all costs in fallthrough exception
+        }
+    }
+    
+    func getInstallTotal() -> Double {
+        var t = getInstallMaterialTypePrice() * Double(self.sqFtToInstall)
+        if(t < 800.0) {
+            t = 800.0
+        }
+        return t
+    }
+    
+    func getSubfloorPrepFee() -> Double {
+        let rate = self.yearHomeBuilt < 1980 ? 300.0 : 230.0
+        let t = rate * Double(self.sqFtToInstall) / 600.0
+        return t < 250.0 ? 250.0 : t
+    }
+    
+    func getTotal() -> Int32 {
+        var total = Double(0)
+        total += self.materialCost * Double(self.sqFtToInstall) // material fee
+        total += 0.33 * 1.90 * Double(self.sqFtToInstall) // trim fee
+        total += getInstallTotal() // install fee
+        total += 0.33 * 1.50 * Double(self.sqFtToInstall) // uhh-not-sure fee
+        total += getSubfloorPrepFee() // subfloor prep fee
+        total += self.yearHomeBuilt < 1980 ? 180.0 : 0.0 // lead test fee
+        total += total * 0.07 // sales tax
+        
+        return Int32(total)
+    }
+    
 }

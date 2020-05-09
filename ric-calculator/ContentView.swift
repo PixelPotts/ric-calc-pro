@@ -17,7 +17,6 @@ struct ContentView: View {
     
     func getUser () {
         Auth.auth().addStateDidChangeListener { (auth, user) in
-            print("Auth.auth().addStateDidChangeListener() fired!", auth, user)
             if let user = user {
                 self.session = User(
                     uid: user.uid,

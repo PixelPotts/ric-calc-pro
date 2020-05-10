@@ -10,7 +10,6 @@
 		25A79F7CCD3EFC610516C52C /* Pods_ric_calculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E59A881249C4E1B07A5D3A6F /* Pods_ric_calculator.framework */; };
 		C74626A82465733300C0A108 /* TermSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74626A72465733300C0A108 /* TermSheet.swift */; };
 		C74626AB2465743900C0A108 /* AllProjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74626AA2465743900C0A108 /* AllProjects.swift */; };
-		C74626B12465A42E00C0A108 /* Projects.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74626B02465A42E00C0A108 /* Projects.swift */; };
 		C74626B324661E9400C0A108 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74626B224661E9400C0A108 /* Calculator.swift */; };
 		C7CB56492461D26B00342BB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB56482461D26B00342BB0 /* AppDelegate.swift */; };
 		C7CB564B2461D26B00342BB0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB564A2461D26B00342BB0 /* SceneDelegate.swift */; };
@@ -32,7 +31,6 @@
 		C74626AA2465743900C0A108 /* AllProjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProjects.swift; sourceTree = "<group>"; };
 		C74626AE2465A40800C0A108 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C74626AF2465A41800C0A108 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		C74626B02465A42E00C0A108 /* Projects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Projects.swift; sourceTree = "<group>"; };
 		C74626B224661E9400C0A108 /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
 		C7CB56452461D26B00342BB0 /* ric-calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ric-calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7CB56482461D26B00342BB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,7 +88,6 @@
 		C74626AC2465A3E900C0A108 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				C74626B02465A42E00C0A108 /* Projects.swift */,
 				C74626B224661E9400C0A108 /* Calculator.swift */,
 			);
 			name = models;
@@ -318,7 +315,6 @@
 				C74626B324661E9400C0A108 /* Calculator.swift in Sources */,
 				C74626A82465733300C0A108 /* TermSheet.swift in Sources */,
 				C7CB566224629F8400342BB0 /* RoomView.swift in Sources */,
-				C74626B12465A42E00C0A108 /* Projects.swift in Sources */,
 				C7CB566024628B4900342BB0 /* Helpers.swift in Sources */,
 				C7CB565E24628A6500342BB0 /* Project.swift in Sources */,
 				C74626AB2465743900C0A108 /* AllProjects.swift in Sources */,

@@ -14,6 +14,7 @@ func ??<T>(binding: Binding<T?>, fallback: T) -> Binding<T> {
     })
 }
 
+// MARK: - CLASS: Projects
 class Projects : ObservableObject {
     @Published var projects: Array<[String:Any]> = []
     private var projectsTmp: Array<[String : Any]> = []
@@ -31,7 +32,7 @@ class Projects : ObservableObject {
                 print("snapshot is empty!")
                 return
             }
-            self.projects = []
+            self.projectsTmp = []
             print("projects",self.projects)
             for document in snapshot!.documents {
                 var data = document.data() as Dictionary<String,Any>
@@ -69,8 +70,8 @@ struct AllProjects: View {
                     "hasInstall": true,
                     "hasTearout": true,
                     "hasMaterial": true,
-                    "sqFtToInstall": Int16(1001),
-                    "yearHomeBuilt": Int16(1918),
+                    "sqFtToInstall": Int16(0),
+                    "yearHomeBuilt": Int16(0),
                     "materialCost": Double(7.95),
                     "tearoutMaterial": Int8(1),
                     "sqFtOfTearout": Int16(101),
@@ -129,6 +130,7 @@ struct AllProjects: View {
     
     var body: some View {
         
+        // MARK: - VIEW: AllProjects (MAIN)
         NavigationView {
             VStack {
                 Group {
@@ -143,12 +145,11 @@ struct AllProjects: View {
                 ScrollView {
                     ForEach(self.$projects.projects.wrappedValue.indices, id: \.self) { i in
                         NavigationLink(destination: ProjectView(
-                            rooms: self.projects.getItem(i)["rooms"] as? Array<Any> ?? [],
                             project: self.projects.getItem(i)
                         )){
                             ListItem(
                                 id: self.projects.getItem(i)["name"] as? String ?? "",
-                                title: self.projects.getItem(i)["name"] as? String ?? "",
+                                title: self.projects.getItem(i)["name"] as? String ?? "Untitled Project",
                                 cost: 100
                             )
                                 .frame(height:40)
@@ -177,6 +178,7 @@ struct AllProjects: View {
             }
             .padding(.top,14)
             .navigationBarTitle(Text("All Projects"),displayMode: .inline)
+            .onAppear(){ self.projects.updateProjects() }
             .sheet(isPresented: self.$showAddProjectSheet) {
                 AddProjectView(newProjectName: self.$newProjectName)
             }
@@ -184,28 +186,16 @@ struct AllProjects: View {
     }
 }
 
+// MARK: - VIEW: AddProject
 struct AddProjectView: View {
     
     func addProject(_ name:String?){
+        let randomName = "My Project #"+String(Int.random(in: 0...10000))
         Firestore.firestore().collection("projects").addDocument(data: [
-            "_createdBy": "Er7xdOCsadaz5rUOrMl0xhX3sEF3",
+            "_createdBy": Auth.auth().currentUser!.uid,
             "_dateCreated": NSDate().timeIntervalSince1970,
-            "name": "Potts Living, Dining Room",
-            "rooms": [
-                [
-                    "name": name ?? "My Cool Project ",
-                    "hasInstall": true,
-                    "hasTearout": true,
-                    "hasMaterial": true,
-                    "sqFtToInstall": Int16(0),
-                    "yearHomeBuilt": Int16(0),
-                    "materialCost": Double(0.00),
-                    "tearoutMaterial": Int8(0),
-                    "sqFtOfTearout": Int16(0),
-                    "_dateCreated": NSDate().timeIntervalSince1970,
-                    "_createdBy": Auth.auth().currentUser!.uid,
-                ]
-            ]
+            "name": name?.trimmingCharacters(in: [" "]) == "" ? randomName : name ?? randomName,
+            "rooms": []
         ]) { error in
             if let error = error {
                 print(error)
@@ -220,7 +210,10 @@ struct AddProjectView: View {
     var body: some View {
         VStack {
             Text("Add New Project").font(.title)
-            TextField("Living & Dining Room", text: self.$newProjectName ?? "")
+            TextField(
+                "Living & Dining Room",
+                text: self.$newProjectName ?? ""
+            )
             Button(action: {
                 self.addProject(self.$newProjectName.wrappedValue)
             }){

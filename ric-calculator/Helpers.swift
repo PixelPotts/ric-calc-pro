@@ -59,7 +59,7 @@ struct Field: View {
         VStack {
             Text(title)
                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-            TextField(self.placeholder, text: self.text)
+            TextField(self.placeholder, text: text)
         }
     }
 }

@@ -27,41 +27,47 @@ class Selections: ObservableObject {
 }
 
 struct RoomView: View {
-    @State private var project: Dictionary<String,Any> = ["":[:]]
-    @State private var docID: String = ""
-    @State private var name: String = ""
-    @State private var hasInstall = false
-    @State private var hasTearout = false
-    @State private var hasMaterial = false
-    @State private var sqFtToInstall: String = ""
-    @State private var yearHomeBuilt: String = ""
-    @State private var materialCost: String = ""
-    @State private var installMaterial: String = "SELECT"
-    @State private var tearoutMaterial: String = "SELECT"
-    @State private var sqFtOfTearout: String = ""
-    @State private var total: String = "0.00"
+    @State var project: Dictionary<String,Any> = ["":[:]]
+    @State var room: Dictionary<String,Any> = ["":[:]]
+    @State var name: String = ""
+    @State var hasInstall: Bool = false
+    @State var hasTearout: Bool = false
+    @State var hasMaterial: Bool = false
+    @State var sqFtToInstall: String = ""
+    @State var yearHomeBuilt: String = ""
+    @State var materialCost: String = ""
+    @State var installMaterial: String = ""
+    @State var tearoutMaterial: String = ""
+    @State var sqFtOfTearout: String = ""
+    @State var total: String = "0.00"
     
-    init(room: Dictionary<String, Any>, project: Dictionary<String,Any>){
+    init(
+        project: Dictionary<String,Any>,
+        room: Dictionary<String,Any>
+    ){
         self.project = project
-        self.docID = room["docID"] as? String ?? ""
-        self.name = room["name"] as? String ?? ""
-        self.hasInstall = room["hasInstall"] as? Bool ?? true
-        self.hasTearout = room["hasTearout"] as? Bool ?? true
-        self.hasMaterial = room["hasMaterial"] as? Bool ?? true
-        self.sqFtToInstall = room["sqFtToInstall"] as? String ?? ""
-        self.yearHomeBuilt = room["yearHomeBuilt"] as? String ?? ""
-        self.materialCost = room["materialCost"] as? String ?? ""
-        self.installMaterial = room["installMaterial"] as? String ?? ""
-        self.tearoutMaterial = room["tearoutMaterial"] as? String ?? ""
-        self.sqFtOfTearout = room["sqFtOfTearout"] as? String ?? ""
+        self.room = room
+        self.initValues()
+    }
+    
+    func initValues() {
+        print("initValues() fired!")
+        
+        self.name = String(self.room["name"] as! String )
+//        self.hasInstall = room["hasInstall"] as? Bool ?? false
+//        self.hasTearout = room["hasTearout"] as? Bool ?? false
+//        self.hasMaterial = room["hasMaterial"] as? Bool ?? false
+//        self.sqFtToInstall = room["sqFtToInstall"] as? String ?? "0"
+//        self.yearHomeBuilt = room["yearHomeBuilt"] as? String ?? "0"
+//        self.materialCost = room["materialCost"] as? String ?? "0"
+//        self.installMaterial = room["installMaterial"] as? String ?? "0"
+//        self.tearoutMaterial = room["tearoutMaterial"] as? String ?? "0"
+//        self.sqFtOfTearout = room["sqFtOfTearout"] as? String ?? "0"
     }
     
     func isStringInArrayOfStrings(array: Array<String>, string: String) -> Bool {
-        print("isStringInArrayOfStrings() fired!")
-        print(array)
         for item in array {
             if(item==string) {
-                print("found matcing string for", item, string)
                 return true
             }
         }
@@ -111,7 +117,7 @@ struct RoomView: View {
             Field(
                 title: "Room Name",
                 placeholder: "Kitchen",
-                text: $name
+                text: self.$name
             )
             
             // Toggles
@@ -130,7 +136,7 @@ struct RoomView: View {
                 HStack {
                     if(isTypeVisible(types: ["install","material"], hasInstall: $hasInstall, hasMaterial: $hasMaterial, hasTearout: $hasTearout)) {
                         Field(
-                            title: "Sq. Ft. of Material",
+                            title: "Sq. Ft. to Install",
                             placeholder: "0",
                             text: $sqFtToInstall
                         )
@@ -207,7 +213,7 @@ struct RoomView: View {
             Spacer()
         }
         .padding(20)
-        .navigationBarTitle(Text("test"), displayMode: .inline)
+        .navigationBarTitle(Text(self.name), displayMode: .inline)
     }
 }
 
@@ -261,11 +267,5 @@ struct PickerView: View {
             }
             Spacer()
         }
-    }
-}
-
-struct RoomView_Previews: PreviewProvider {
-    static var previews: some View {
-        RoomView(room: ["":""], project: ["":""])
     }
 }

@@ -17,8 +17,8 @@ struct ProjectView: View {
     @State var newRoomName: String?
     var db = Firestore.firestore()
     
-    func getRoomName(_ room:Dictionary<String,Any>) -> String{
-        return room["name"] as? String ?? ""
+    func getRoomDictValueByKey(room: Dictionary<String,Any>, key: String) -> String{
+        return room[key] as? String ?? "error_unknown_document_id"
     }
     
     func getKeyValue(_ list:Any, _ key:String) -> Any {
@@ -38,8 +38,10 @@ struct ProjectView: View {
             } else {
                 var tmpRooms: Array<Any> = []
                 _ = snapshot?.documents.map({ (QueryDocumentSnapshot) in
-                    print(QueryDocumentSnapshot)
-                    tmpRooms.append(QueryDocumentSnapshot.data())
+                    var data = QueryDocumentSnapshot.data()
+                    data["_documentID"] = QueryDocumentSnapshot.documentID
+                    print(data)
+                    tmpRooms.append(data)
                 })
                 self.rooms = tmpRooms
             }
@@ -53,13 +55,19 @@ struct ProjectView: View {
                 ForEach(self.rooms.indices, id: \.self) { i in
                     NavigationLink(destination:
                         RoomView(
-                            project: self.project as Dictionary<String,Any>,
-                            room: self.rooms[i] as! Dictionary<String, Any>
+                            project: self.project,
+                            roomDocumentId: self.getRoomDictValueByKey(
+                                room: self.rooms[i] as? Dictionary<String,Any> ?? ["":[:]],
+                                key: "_documentID"
+                            )
                         )
                     ){
                         ListItem(
                             id: String(i),
-                            title: self.getRoomName(self.rooms[i] as! Dictionary<String, Any>),
+                            title: self.getRoomDictValueByKey(
+                                room: self.rooms[i] as? Dictionary<String,Any> ?? ["":[:]],
+                                key: "name"
+                            ),
                             cost: 100
                         )
                     }
@@ -104,12 +112,14 @@ struct AddRoomView: View {
             "hasTearout": false,
             "hasMaterial": false,
             "sqFtToInstall": Int16(0),
+            "sqFtOfTearout": Int16(0),
             "yearHomeBuilt": Int16(0),
             "materialCost": Double(0),
-            "tearoutMaterial": Int8(0),
-            "sqFtOfTearout": Int16(0),
+            "tearoutMaterial": "GLUED",
+            "installMaterial": "NAILED",
+            "total": Double(0),
             "_projectDocID": self.project["docID"] as? String ?? "_projectDocID",
-            "_createdOn": NSDate().timeIntervalSince1970,
+            "_createdOn": Int32(NSDate().timeIntervalSince1970),
             "_createdBy": Auth.auth().currentUser!.uid
         ]) { error in
             if let error = error {

@@ -6,63 +6,92 @@
 //  Copyright © 2020 Bryan Potts. All rights reserved.
 //
 import SwiftUI
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 /// TODO:
 /// Singleton shared DAO object
 /// Try passing in entire collection
 /// Check out nested codables
 
-public struct Room: Codable {
-    //    init(){}
-    var id: String = ""
-    var title: String = ""
-    enum CodingKeys: String, CodingKey {
-        case id = "id"
-        case title = "title"
-    }
-}
-
-class Selections: ObservableObject {
-    @Published var installMaterial: String = ""
-}
-
 struct RoomView: View {
-    @State var project: Dictionary<String,Any> = ["":[:]]
+    var db = Firestore.firestore()
+    var project: Dictionary<String,Any>
+    var roomDocumentId: String
     @State var room: Dictionary<String,Any> = ["":[:]]
     @State var name: String = ""
     @State var hasInstall: Bool = false
     @State var hasTearout: Bool = false
     @State var hasMaterial: Bool = false
     @State var sqFtToInstall: String = ""
+    @State var sqFtOfTearout: String = ""
     @State var yearHomeBuilt: String = ""
     @State var materialCost: String = ""
     @State var installMaterial: String = ""
     @State var tearoutMaterial: String = ""
-    @State var sqFtOfTearout: String = ""
     @State var total: String = "0.00"
     
     init(
         project: Dictionary<String,Any>,
-        room: Dictionary<String,Any>
+        roomDocumentId: String
     ){
         self.project = project
-        self.room = room
-        self.initValues()
+        self.roomDocumentId = roomDocumentId
     }
     
-    func initValues() {
-        print("initValues() fired!")
-        
-        self.name = String(self.room["name"] as! String )
-//        self.hasInstall = room["hasInstall"] as? Bool ?? false
-//        self.hasTearout = room["hasTearout"] as? Bool ?? false
-//        self.hasMaterial = room["hasMaterial"] as? Bool ?? false
-//        self.sqFtToInstall = room["sqFtToInstall"] as? String ?? "0"
-//        self.yearHomeBuilt = room["yearHomeBuilt"] as? String ?? "0"
-//        self.materialCost = room["materialCost"] as? String ?? "0"
-//        self.installMaterial = room["installMaterial"] as? String ?? "0"
-//        self.tearoutMaterial = room["tearoutMaterial"] as? String ?? "0"
-//        self.sqFtOfTearout = room["sqFtOfTearout"] as? String ?? "0"
+    func getRoom(_ id:String) -> Void {
+        self.db.collection("rooms").document(id).addSnapshotListener { (snapshot, error) in
+            if let error = error {
+                print(error)
+            } else {
+                print("ROOM FROM DB:")
+                let room = snapshot?.data()
+                self.name = room!["name"] as? String ?? ""
+                self.hasInstall = room!["hasInstall"] as? Bool ?? false
+                self.hasTearout = room!["hasTearout"] as? Bool ?? false
+                self.hasMaterial = room!["hasMaterial"] as? Bool ?? false
+                self.sqFtToInstall = room!["sqFtToInstall"] as? String ?? ""
+                self.sqFtOfTearout = room!["sqFtOfTearout"] as? String ?? ""
+                self.yearHomeBuilt = room!["yearHomeBuilt"] as? String ?? ""
+                self.materialCost = room!["materialCost"] as? String ?? ""
+                self.installMaterial = room!["installMaterial"] as? String ?? ""
+                self.tearoutMaterial = room!["tearoutMaterial"] as? String ?? ""
+            }
+        }
+    }
+    
+    func saveRoom() -> Void {
+        self.db.collection("rooms").document(self.roomDocumentId).updateData([
+            "name": String(self.name),
+            "hasInstall": Bool(self.hasInstall),
+            "hasTearout": Bool(self.hasTearout),
+            "hasMaterial": Bool(self.hasMaterial),
+            "sqFtToInstall": self.sqFtToInstall,
+            "sqFtOfTearout": self.sqFtOfTearout,
+            "yearHomeBuilt": self.yearHomeBuilt,
+            "materialCost": self.materialCost,
+            "tearoutMaterial": self.tearoutMaterial,
+            "installMaterial": self.installMaterial,
+            "total": self.total,
+        ], completion: { error in
+            if let error = error {
+                print(error)
+            } else {
+                let Calc = Calculator(
+                    hasInstall: self.hasInstall,
+                    hasTearout: self.hasTearout,
+                    hasMaterial: self.hasMaterial,
+                    sqFtToInstall: self.sqFtToInstall,
+                    sqFtOfTearout: self.sqFtOfTearout,
+                    yearHomeBuilt: self.yearHomeBuilt,
+                    materialCost: self.materialCost,
+                    installMaterial: self.installMaterial,
+                    tearoutMaterial: self.tearoutMaterial
+                )
+                self.total = String(Calc.getFormattedTotal())
+                print("total:",Calc.getTotal())
+            }
+        })
     }
     
     func isStringInArrayOfStrings(array: Array<String>, string: String) -> Bool {
@@ -80,25 +109,13 @@ struct RoomView: View {
         hasMaterial: Binding<Bool>,
         hasTearout: Binding<Bool>
     ) -> Bool {
-        // if no types are switched on, return false
-        print("---")
-        print("types", types)
-        
         if(hasInstall.wrappedValue==false && hasMaterial.wrappedValue==false && hasTearout.wrappedValue==false) {
-            print("No options are switched on! Returning false.")
             return false
         } else {
-            
             if(types == [""]) { return true }
-            print("At least one option is switched on.")
-            
-            print(isStringInArrayOfStrings(array: types, string: "install"))
-            
             if(isStringInArrayOfStrings(array: types, string: "install") && hasInstall.wrappedValue) { return true }
             if(isStringInArrayOfStrings(array: types, string: "material") && hasMaterial.wrappedValue) { return true }
             if(isStringInArrayOfStrings(array: types, string: "tearout") && hasTearout.wrappedValue) { return true }
-            
-            print("Fallthrough returns false.")
             return false
         }
     }
@@ -114,10 +131,9 @@ struct RoomView: View {
             .padding(.bottom,-22)
             
             // ROOM NAME
-            Field(
-                title: "Room Name",
-                placeholder: "Kitchen",
-                text: self.$name
+            TextField(
+                "Room Name",
+                text: $name
             )
             
             // Toggles
@@ -196,8 +212,9 @@ struct RoomView: View {
                     Text($total.wrappedValue)
                 }
                 
-                Button("Save Room", action: {
-                    
+                Button("Update Total", action: {
+                    self.total = "0.00"
+                    self.saveRoom()
                 })
                     .buttonStyle(NeumorphicButtonStyle(bgColor: Color.blue))
                     .frame(minWidth:0, maxWidth: .infinity)
@@ -214,6 +231,9 @@ struct RoomView: View {
         }
         .padding(20)
         .navigationBarTitle(Text(self.name), displayMode: .inline)
+        .onAppear(){
+            self.getRoom(self.roomDocumentId)
+        }
     }
 }
 

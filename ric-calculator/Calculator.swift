@@ -5,6 +5,7 @@
 //  Created by Bryan Potts on 5/8/20.
 //  Copyright © 2020 Bryan Potts. All rights reserved.
 //
+import UIKit
 
 class Calculator {
     private var hasInstall = true
@@ -16,7 +17,7 @@ class Calculator {
     private var materialCost = Double()
     private var installMaterial = "" // enum
     private var tearoutMaterial = "" // enum
-    public var total: Int32
+    public var total: Double
     
     init(
         hasInstall: Bool,
@@ -38,7 +39,7 @@ class Calculator {
         self.materialCost = Double(materialCost) ?? 0.0
         self.installMaterial = installMaterial
         self.tearoutMaterial = tearoutMaterial
-        self.total = Int32(0)
+        self.total = Double(0)
     }
     
     func getInstallMaterialTypePrice() -> Double {
@@ -66,7 +67,15 @@ class Calculator {
         return t < 250.0 ? 250.0 : t
     }
     
-    func getTotal() -> Int32 {
+    func getFormattedTotal() -> String {
+        _ = self.getTotal()
+        let total = NSNumber(value: self.total)
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        return formatter.string(from: total) ?? "0.00"
+    }
+    
+    func getTotal() -> Double {
         var total = Double(0)
         total += self.materialCost * Double(self.sqFtToInstall) // material fee
         total += 0.33 * 1.90 * Double(self.sqFtToInstall) // trim fee
@@ -75,8 +84,8 @@ class Calculator {
         total += getSubfloorPrepFee() // subfloor prep fee
         total += self.yearHomeBuilt < 1980 ? 180.0 : 0.0 // lead test fee
         total += total * 0.07 // sales tax
-        
-        return Int32(total)
+        self.total = total
+        return Double(self.total)
     }
     
 }

@@ -33,7 +33,7 @@ class SessionStore : ObservableObject {
             let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")
             let credential = PhoneAuthProvider.provider().credential(
                 withVerificationID: verificationID!,
-                verificationCode: "123456"
+                verificationCode: ""
             )
             
             // Sign in with authentication token

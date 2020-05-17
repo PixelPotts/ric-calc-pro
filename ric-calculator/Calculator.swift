@@ -87,5 +87,4 @@ class Calculator {
         self.total = total
         return Double(self.total)
     }
-    
 }

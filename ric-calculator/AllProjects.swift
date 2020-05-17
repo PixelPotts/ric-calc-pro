@@ -177,6 +177,7 @@ struct AllProjects: View {
                 .padding(20)
             }
             .padding(.top,14)
+            .background(Color("yellow"))
             .navigationBarTitle(Text("All Projects"),displayMode: .inline)
             .onAppear(){ self.projects.updateProjects() }
             .sheet(isPresented: self.$showAddProjectSheet) {

@@ -97,7 +97,6 @@
 			isa = PBXGroup;
 			children = (
 				C74626AF2465A41800C0A108 /* GoogleService-Info.plist */,
-				C7CB564E2461D26D00342BB0 /* Assets.xcassets */,
 				C7CB56482461D26B00342BB0 /* AppDelegate.swift */,
 				C7CB564A2461D26B00342BB0 /* SceneDelegate.swift */,
 				C7CB56532461D26D00342BB0 /* LaunchScreen.storyboard */,
@@ -129,6 +128,7 @@
 		C7CB56472461D26B00342BB0 /* ric-calculator */ = {
 			isa = PBXGroup;
 			children = (
+				C7CB564E2461D26D00342BB0 /* Assets.xcassets */,
 				C74626AC2465A3E900C0A108 /* models */,
 				C7CB565C24628A4A00342BB0 /* views */,
 				C74626AD2465A3FF00C0A108 /* core */,
@@ -370,6 +370,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = NH5J65QW37;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -430,6 +431,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = NH5J65QW37;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -456,7 +458,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "ric-calculator/ric-calculator.entitlements";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"ric-calculator/Preview Content\"";
 				DEVELOPMENT_TEAM = NH5J65QW37;
 				ENABLE_PREVIEWS = YES;
@@ -467,8 +471,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ricflooring.ric-calculator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "ric-calculator-dev-provisioning-profile";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -478,7 +483,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "ric-calculator/ric-calculator.entitlements";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"ric-calculator/Preview Content\"";
 				DEVELOPMENT_TEAM = NH5J65QW37;
 				ENABLE_PREVIEWS = YES;
@@ -489,8 +496,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ricflooring.ric-calculator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "ric-calculator-dev-provisioning-profile";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

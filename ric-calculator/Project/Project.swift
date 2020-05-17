@@ -90,9 +90,10 @@ struct ProjectView: View {
                 .padding(.top,14)
                 .navigationBarTitle(Text(project["name"] as! String),displayMode: .inline)
         }
-        .onAppear(){
-            self.getRooms()
-        }
+            .background(Color("yellow"))
+            .onAppear(){
+                self.getRooms()
+            }
     }
 }
 

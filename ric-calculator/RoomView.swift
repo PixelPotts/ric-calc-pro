@@ -124,8 +124,11 @@ struct RoomView: View {
         VStack {
             HStack {
                 Spacer()
-                NavigationLink(destination:EmptyView()) {
-                    Text("Help >")
+                Button(action:{
+                    self.total = "0.00"
+                    self.saveRoom()
+                }){
+                    Text("Update/Save")
                 }
             }
             .padding(.bottom,-22)
@@ -155,14 +158,14 @@ struct RoomView: View {
                             title: "Sq. Ft. to Install",
                             placeholder: "0",
                             text: $sqFtToInstall
-                        )
+                        ).font(.headline)
                     }
                     if(isTypeVisible(types: ["install","tearout"], hasInstall: $hasInstall, hasMaterial: $hasMaterial, hasTearout: $hasTearout)) {
                         Field(
                             title: "Year Home Built",
                             placeholder: "YYYY",
                             text: $yearHomeBuilt
-                        )
+                        ).font(.headline)
                     }
                 }
                 
@@ -183,7 +186,7 @@ struct RoomView: View {
                             title: "Material Cost",
                             placeholder: "0",
                             text: $materialCost
-                        )
+                        ).font(.headline)
                     }
                 }
                 
@@ -202,23 +205,24 @@ struct RoomView: View {
                             title: "Sq. Ft. of Tearout",
                             placeholder: "0",
                             text: $sqFtOfTearout
-                        )
+                        ).font(.headline)
                     }
                 }
                 
                 HStack {
                     Text("Total")
+                        .font(.headline)
                     Spacer()
                     Text($total.wrappedValue)
                 }
                 
-                Button("Update Total", action: {
-                    self.total = "0.00"
-                    self.saveRoom()
-                })
-                    .buttonStyle(NeumorphicButtonStyle(bgColor: Color.blue))
-                    .frame(minWidth:0, maxWidth: .infinity)
-                    .padding(.top,40)
+//                Button("Update Total", action: {
+//                    self.total = "0.00"
+//                    self.saveRoom()
+//                })
+//                    .buttonStyle(NeumorphicButtonStyle(bgColor: Color.blue))
+//                    .frame(minWidth:0, maxWidth: .infinity)
+//                    .padding(.top,40)
                 
             } else {
                 Text("Get an accurate quote!").font(.title)
@@ -229,11 +233,12 @@ struct RoomView: View {
             
             Spacer()
         }
-        .padding(20)
-        .navigationBarTitle(Text(self.name), displayMode: .inline)
-        .onAppear(){
-            self.getRoom(self.roomDocumentId)
-        }
+            .padding(20)
+            .background(Color("yellow"))
+            .navigationBarTitle(Text(self.name), displayMode: .inline)
+            .onAppear(){
+                self.getRoom(self.roomDocumentId)
+            }
     }
 }
 
@@ -245,6 +250,7 @@ struct PickerField: View {
     var body: some View {
         VStack {
             Text(title)
+                .font(.headline)
             Button(action: {self.presenting.toggle()}){
                 Text(self.$selection.wrappedValue)
                     .padding(.top,7)
